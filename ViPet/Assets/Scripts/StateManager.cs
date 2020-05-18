@@ -1,68 +1,86 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
+
+[System.Serializable]
+public struct EmotionCloud
+{
+    public RawImage raw;
+    public List<Vector2> offsets;
+}
+
+[System.Serializable]
+public struct EmotionMaterial
+{
+    public Material mat;
+    Material list;
+    public List<Vector2> offsets;
+}
+
+[System.Serializable]
+public struct Emotions
+{
+    public EmotionStates emotion;
+    public int Eyes;
+    public int Mouth;
+    public int Cloud;
+}
+
+
+public enum EmotionStates
+{
+    Love = 0,
+    Happy,
+    Full,
+    Sad,
+    Angry,
+    Bored,
+    Hungry
+}
 
 public class StateManager : MonoBehaviour
 {
-    private BarController AlimentationBar;
-    private BarController HappinessBar;
-    private BarController LoveBar;
+    Renderer ren;
+    public List<EmotionMaterial> materials;
+    public List<EmotionCloud> clouds;
+    public List<Emotions> emotions;
 
-    public Camera camera;
-    public GameObject particle;
+    public EmotionStates current_index1 = 0;
 
-    public float alimentation = 100;
-    public float happiness = 100;
-    public float love = 100;
-
-    private float lastTimeDecreased = 0;
-
+    // Start is called before the first frame update
     void Start()
     {
-        AlimentationBar = GameObject.Find("AlimentationBar").GetComponent<BarController>();
-        HappinessBar = GameObject.Find("HappinessBar").GetComponent<BarController>();
-        LoveBar = GameObject.Find("LoveBar").GetComponent<BarController>();
-
-        AlimentationBar.SetMaxValue(alimentation);
-        HappinessBar.SetMaxValue(happiness);
-        LoveBar.SetMaxValue(love);
+        ren = GetComponent<Renderer>();
     }
 
+    // Update is called once per frame
     void Update()
     {
-        if (Time.time > lastTimeDecreased + 0.1) 
+        if (Input.GetKeyDown("w"))
         {
-            lastTimeDecreased = Time.time;
-            
-            alimentation -= 0.1f;
-            happiness -= 0.1f;
-            love -= 0.1f;
-
-            AlimentationBar.SetSize(alimentation);
-            HappinessBar.SetSize(happiness);
-            LoveBar.SetSize(love);
+            current_index1++;
+            if ((int)current_index1 > emotions.Count - 1)
+                current_index1 = 0;
+        }
+        if (Input.GetKeyDown("s"))
+        {
+            current_index1--;
+            if (current_index1 < 0)
+                current_index1 = (EmotionStates)emotions.Count - 1;
         }
 
-        foreach(Touch touch in Input.touches)
+        for (int i = 0; i < emotions.Count; ++i)
         {
-            if (touch.phase == TouchPhase.Began)
+            if (current_index1 == emotions[i].emotion)
             {
-                // Create a ray from the current touch coordinates
-                Ray ray = Camera.allCameras[0].ScreenPointToRay(touch.position);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
-                {
-                    if (hit.collider.gameObject.name == "Buizel") {
-                        Instantiate(particle, transform.position, transform.rotation);
-                        love += 30.0f;
-                        if (love < 100) love = 100;
-                    }
-                    else if (hit.collider.gameObject.name == "Ball")
-                    {
-
-                    }
-                }
-
+                materials[0].mat.mainTextureOffset = -materials[0].offsets[emotions[i].Eyes - 1];
+                materials[1].mat.mainTextureOffset = -materials[1].offsets[emotions[i].Mouth - 1];
+                Rect rect = clouds[0].raw.uvRect;
+                rect.position = clouds[0].offsets[emotions[i].Cloud - 1];
+                clouds[0].raw.uvRect = rect;
+                break;
             }
         }
     }
