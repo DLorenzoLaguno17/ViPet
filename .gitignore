@@ -43,3 +43,6 @@ ehthumbs.db
 [Dd]esktop.ini
 Corridor/Library/ShaderCache/
 Corridor/Library/metadata/
+
+ViPet/Library/PackageCache/com.ptc.vuforia.engine@9.1.7/Vuforia/Plugins/iOS/Vuforia.framework/Vuforia
+ViPet/Library/ArtifactDB
