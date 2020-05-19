@@ -61,45 +61,45 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11222}
+      Script: {instanceID: 11230}
     - Class: 114
-      Script: {instanceID: 11382}
+      Script: {instanceID: 11390}
     - Class: 114
-      Script: {instanceID: 11422}
+      Script: {instanceID: 11430}
     - Class: 114
-      Script: {instanceID: 11628}
+      Script: {instanceID: 11636}
     - Class: 114
-      Script: {instanceID: 11668}
-    - Class: 114
-      Script: {instanceID: 11694}
+      Script: {instanceID: 11676}
     - Class: 114
       Script: {instanceID: 11702}
     - Class: 114
-      Script: {instanceID: 11704}
+      Script: {instanceID: 11710}
     - Class: 114
-      Script: {instanceID: 11792}
+      Script: {instanceID: 11712}
     - Class: 114
-      Script: {instanceID: 11854}
+      Script: {instanceID: 11800}
     - Class: 114
-      Script: {instanceID: 11902}
+      Script: {instanceID: 11862}
     - Class: 114
-      Script: {instanceID: 12196}
+      Script: {instanceID: 11910}
     - Class: 114
-      Script: {instanceID: 12516}
+      Script: {instanceID: 12204}
     - Class: 114
-      Script: {instanceID: 12538}
+      Script: {instanceID: 12524}
     - Class: 114
-      Script: {instanceID: 12708}
+      Script: {instanceID: 12546}
     - Class: 114
-      Script: {instanceID: 12910}
+      Script: {instanceID: 12716}
     - Class: 114
-      Script: {instanceID: 13006}
+      Script: {instanceID: 12918}
     - Class: 114
-      Script: {instanceID: 13178}
+      Script: {instanceID: 13014}
     - Class: 114
-      Script: {instanceID: 13452}
+      Script: {instanceID: 13186}
     - Class: 114
-      Script: {instanceID: 13484}
+      Script: {instanceID: 13460}
+    - Class: 114
+      Script: {instanceID: 13492}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1139,7 +1139,7 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
-      Hash: 691825af6cc030fefdaa6230d29bc7af
+      Hash: 71764c7c822f0ec40a44cd63b9b66c15
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: StateManager
@@ -1740,4 +1740,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/Main Scene.unity
-  playerPath: C:/Users/EricKnela/Downloads/vuforia 8.apk
+  playerPath: D:/GitHub/ViPet/ViPet/ViPet.apk
