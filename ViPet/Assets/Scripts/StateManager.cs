@@ -31,13 +31,14 @@ public struct Emotions
 
 public enum EmotionStates
 {
-    Love = 0,
+    Love,
     Happy,
     Full,
     Sad,
     Angry,
     Bored,
-    Hungry
+    Hungry,
+    Normal
 }
 
 public class StateManager : MonoBehaviour
@@ -46,8 +47,9 @@ public class StateManager : MonoBehaviour
     public List<EmotionMaterial> materials;
     public List<EmotionCloud> clouds;
     public List<Emotions> emotions;
+    IEnumerator routine = null;
 
-    public EmotionStates current_index1 = 0;
+    public EmotionStates current_emotion = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -60,28 +62,61 @@ public class StateManager : MonoBehaviour
     {
         if (Input.GetKeyDown("w"))
         {
-            current_index1++;
-            if ((int)current_index1 > emotions.Count - 1)
-                current_index1 = 0;
+            current_emotion++;
+            if ((int)current_emotion > emotions.Count - 1)
+                current_emotion = 0;
         }
         if (Input.GetKeyDown("s"))
         {
-            current_index1--;
-            if (current_index1 < 0)
-                current_index1 = (EmotionStates)emotions.Count - 1;
+            current_emotion--;
+            if (current_emotion < 0)
+                current_emotion = (EmotionStates)emotions.Count - 1;
         }
-
-        for (int i = 0; i < emotions.Count; ++i)
+        if (Input.GetKeyDown("space"))
         {
-            if (current_index1 == emotions[i].emotion)
+            for (int i = 0; i < emotions.Count; ++i)
             {
-                materials[0].mat.mainTextureOffset = -materials[0].offsets[emotions[i].Eyes - 1];
-                materials[1].mat.mainTextureOffset = -materials[1].offsets[emotions[i].Mouth - 1];
-                Rect rect = clouds[0].raw.uvRect;
-                rect.position = clouds[0].offsets[emotions[i].Cloud - 1];
-                clouds[0].raw.uvRect = rect;
-                break;
+                if (current_emotion == emotions[i].emotion)
+                {
+                    if (routine != null)
+                        StopCoroutine(routine);
+                    routine = setEmotion(i);
+                    StartCoroutine(routine);
+                    break;
+                }
             }
         }
+
     }
+
+    private IEnumerator setEmotion(int i)
+    {
+        GameObject cloud = gameObject.transform.Find("Cloud").gameObject;
+        if(emotions[i].Cloud != -1)
+            cloud.SetActive(true);
+        else
+            cloud.SetActive(false);
+
+        AssigEmotion(i);
+
+        yield return new WaitForSeconds(2.5f);
+
+        i = (int)EmotionStates.Normal;
+        AssigEmotion(i);
+
+        cloud.SetActive(false);
+    }
+
+    void AssigEmotion(int i)
+    {
+        current_emotion = (EmotionStates)i;
+        Rect rect = clouds[0].raw.uvRect;
+        materials[0].mat.mainTextureOffset = -materials[0].offsets[emotions[i].Eyes - 1];
+        materials[1].mat.mainTextureOffset = -materials[1].offsets[emotions[i].Mouth - 1];
+        if(emotions[i].Cloud != -1)
+            rect.position = clouds[0].offsets[emotions[i].Cloud - 1];
+        clouds[0].raw.uvRect = rect;
+    }
+
+
 }

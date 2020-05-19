@@ -1521,7 +1521,11 @@ MonoBehaviour:
     Eyes: 6
     Mouth: 2
     Cloud: 2
-  current_index1: 0
+  - emotion: 7
+    Eyes: 1
+    Mouth: 1
+    Cloud: -1
+  current_emotion: 0
 --- !u!1 &5961100441278787170
 GameObject:
   m_ObjectHideFlags: 0
