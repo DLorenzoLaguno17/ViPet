@@ -7,8 +7,6 @@ public class GameManager : MonoBehaviour
     private BarController AlimentationBar;
     private BarController HappinessBar;
     private BarController LoveBar;
-
-    public Camera camera;
     public GameObject particle;
 
     public float alimentation = 100;
@@ -54,7 +52,7 @@ public class GameManager : MonoBehaviour
                 {
                     if (hit.collider.gameObject.name == "Buizel") {
                         Instantiate(particle, transform.position, transform.rotation);
-                        love += 30.0f;
+                        love += 20.0f;
                         if (love < 100) love = 100;
                     }
                     else if (hit.collider.gameObject.name == "Ball")

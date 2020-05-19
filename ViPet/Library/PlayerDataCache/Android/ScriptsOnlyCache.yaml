@@ -2,6 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - BarController
+    - GameManager
     - StateManager
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -15,6 +16,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.RawImage
     - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
     Vuforia.UnityExtensions.dll:
@@ -56,35 +58,39 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11222}
+      Script: {instanceID: 11376}
     - Class: 114
-      Script: {instanceID: 11382}
+      Script: {instanceID: 11532}
     - Class: 114
-      Script: {instanceID: 11422}
+      Script: {instanceID: 11572}
     - Class: 114
-      Script: {instanceID: 11666}
+      Script: {instanceID: 11810}
     - Class: 114
-      Script: {instanceID: 11692}
+      Script: {instanceID: 11836}
     - Class: 114
-      Script: {instanceID: 11700}
+      Script: {instanceID: 11844}
     - Class: 114
-      Script: {instanceID: 11702}
+      Script: {instanceID: 11846}
     - Class: 114
-      Script: {instanceID: 11790}
+      Script: {instanceID: 11934}
     - Class: 114
-      Script: {instanceID: 11898}
+      Script: {instanceID: 12042}
     - Class: 114
-      Script: {instanceID: 11978}
+      Script: {instanceID: 12122}
     - Class: 114
-      Script: {instanceID: 12704}
+      Script: {instanceID: 12660}
     - Class: 114
-      Script: {instanceID: 13000}
+      Script: {instanceID: 12830}
     - Class: 114
-      Script: {instanceID: 13444}
+      Script: {instanceID: 13024}
     - Class: 114
-      Script: {instanceID: 13476}
+      Script: {instanceID: 13120}
     - Class: 114
-      Script: {instanceID: 17304}
+      Script: {instanceID: 13288}
+    - Class: 114
+      Script: {instanceID: 13556}
+    - Class: 114
+      Script: {instanceID: 13588}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -534,10 +540,10 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-      Hash: 5c97261c58131bd3d5138c4b00cd61bb
+      Hash: 06e099f5d43a7b1a5af1ebc0546b9fa3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: StateManager
+    className: GameManager
   - hash:
       serializedVersion: 2
       Hash: ed9f9ba4f86811683bd63e5cc6dae905
@@ -1032,12 +1038,6 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
-      Hash: 6d7feccafa6bce82ed3f38bc9552af8a
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: NewBehaviourScript
-  - hash:
-      serializedVersion: 2
       Hash: 5f1752ed2092162f016c19510c28a8b9
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -1110,6 +1110,12 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
+      Hash: 706c39c6d1c4ec54aef5b5754d1d4056
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: StateManager
+  - hash:
+      serializedVersion: 2
       Hash: 8001a5f7502aab37e42206da015e6914
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -1144,6 +1150,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_StyleSheet
+  - hash:
+      serializedVersion: 2
+      Hash: 41c5769914db1c1d83740d47c3c9e65b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BarController
   - hash:
       serializedVersion: 2
       Hash: 21d73eda81c18eacd2c91ad5dfaf2e32
@@ -1696,12 +1708,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 41c5769914db1c1d83740d47c3c9e65b
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: BarController
   platform: 13
   scenePathNames:
   - Assets/Scenes/Main Scene.unity
