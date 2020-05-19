@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
                     if (hit.collider.gameObject.name == "Buizel") {
                         Instantiate(particle, transform.position, transform.rotation);
                         love += 20.0f;
-                        if (love < 100) love = 100;
+                        if (love > 100) love = 100;
                     }
                     else if (hit.collider.gameObject.name == "Ball")
                     {
