@@ -896,7 +896,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4489091931542036240
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1428,6 +1428,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8878496595719576684}
   - component: {fileID: 4489091931574058453}
+  - component: {fileID: 479757636}
+  - component: {fileID: 2120898778}
+  - component: {fileID: 596157891}
   m_Layer: 0
   m_Name: Buizel_Prefab
   m_TagString: Untagged
@@ -1444,7 +1447,7 @@ Transform:
   m_GameObject: {fileID: 5579282939276406399}
   m_LocalRotation: {x: 0, y: 0.99999994, z: -0, w: -0.00030522322}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.16241679, y: 0.16241679, z: 0.16241679}
   m_Children:
   - {fileID: 7286141138324757271}
   - {fileID: 1091634854114980922}
@@ -1525,7 +1528,53 @@ MonoBehaviour:
     Eyes: 1
     Mouth: 1
     Cloud: -1
-  current_emotion: 0
+  current_emotion: 7
+  cloud: {fileID: 4489091931542036247}
+  particle: {fileID: 6865974819297180675, guid: 49b7c4ac9ef964648939dd2d1f906130,
+    type: 3}
+  alimentation: 100
+  happiness: 100
+  love: 100
+  emoteduration: 1.5
+--- !u!65 &479757636
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5579282939276406399}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.91166013, y: 1.7430065, z: 1}
+  m_Center: {x: 0.0027943442, y: 0.84529716, z: 4.8927577e-14}
+--- !u!65 &2120898778
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5579282939276406399}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.91166013, y: 1.7430065, z: 1}
+  m_Center: {x: 0.0027943442, y: 0.84529716, z: 4.8927577e-14}
+--- !u!65 &596157891
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5579282939276406399}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.91166013, y: 1.7430065, z: 1}
+  m_Center: {x: 0.0027943442, y: 0.84529716, z: 4.8927577e-14}
 --- !u!1 &5961100441278787170
 GameObject:
   m_ObjectHideFlags: 0

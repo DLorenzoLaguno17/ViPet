@@ -8,11 +8,11 @@ public class TargetManager : MonoBehaviour
 
     public void CreateObject()
     {
-        Instantiate(go, transform.position, transform.rotation);
+        go.SetActive(true);//Instantiate(go, transform.position, transform.rotation);
     }
 
     public void DestroyObject()
     {
-        Destroy(go);
+        go.SetActive(false); //Destroy(go);
     }
 }

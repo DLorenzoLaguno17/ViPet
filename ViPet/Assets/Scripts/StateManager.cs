@@ -49,6 +49,7 @@ public class StateManager : MonoBehaviour
     public List<Emotions> emotions;
     IEnumerator routine = null;
     public EmotionStates current_emotion = 0;
+    public GameObject cloud = null;
 
     private BarController AlimentationBar;
     private BarController HappinessBar;
@@ -59,6 +60,10 @@ public class StateManager : MonoBehaviour
     public float happiness = 100;
     public float love = 100;
     private float lastTimeDecreased = 0;
+    float lastEmotionTime = 0;
+    float lastEmotion = 0;
+    int[] queue = { 0, 0, 0 };
+    public float emoteduration = 1.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -76,37 +81,83 @@ public class StateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("w"))
+        if(Time.time - lastEmotionTime > 3)
         {
-            current_emotion++;
-            if ((int)current_emotion > emotions.Count - 1)
-                current_emotion = 0;
-        }
-        if (Input.GetKeyDown("s"))
-        {
-            current_emotion--;
-            if (current_emotion < 0)
-                current_emotion = (EmotionStates)emotions.Count - 1;
-        }
-        if (Input.GetKeyDown("space"))
-        {
-            for (int i = 0; i < emotions.Count; ++i)
+            Debug.Log((int)alimentation % 15);
+            if((int)alimentation % 15 == 0)
             {
-                if (current_emotion == emotions[i].emotion)
+                queue[0] = 1;
+                lastEmotionTime = Time.time;
+            }
+            if((int)happiness % 15 == 0)
+            {
+                queue[1] = 1;
+                lastEmotionTime = Time.time;
+            }
+            if ((int)love % 15 == 0)
+            {
+                queue[2] = 1;
+                lastEmotionTime = Time.time;
+            }
+        }
+
+        if(Time.time - lastEmotion > emoteduration + 0.5f)
+        {
+            if (queue[0] == 1)
+            {
+                if(alimentation < 50) { 
+                    newEmotion(EmotionStates.Hungry);
+                    queue[0] = 0;
+                    lastEmotion = Time.time;
+                }
+                else
                 {
-                    newEmotion(current_emotion);
-                    break;
+                    queue[0] = 0;
+                }
+            }
+            else if (queue[1] == 1)
+            {
+                if (happiness < 50)
+                {
+                    newEmotion(EmotionStates.Bored);
+                    queue[1] = 0;
+                    lastEmotion = Time.time;
+                }
+                else
+                {
+                    newEmotion(EmotionStates.Happy);
+                    queue[1] = 0;
+                    lastEmotion = Time.time;
+                }
+            }
+            else if (queue[2] == 1)
+            {
+                if (love < 50)
+                {
+                    newEmotion(EmotionStates.Sad);
+                    queue[2] = 0;
+                    lastEmotion = Time.time;
+                }
+                else
+                {
+                    newEmotion(EmotionStates.Love);
+                    queue[2] = 0;
+                    lastEmotion = Time.time;
                 }
             }
         }
+
 
         if (Time.time > lastTimeDecreased + 0.1)
         {
             lastTimeDecreased = Time.time;
 
-            alimentation -= 0.1f;
-            happiness -= 0.1f;
-            love -= 0.1f;
+            if(alimentation > 0)
+                alimentation -= 0.1f;
+            if (happiness > 0)
+                happiness -= 0.1f;
+            if (love > 0)
+                love -= 0.1f;
 
             AlimentationBar.SetSize(alimentation);
             HappinessBar.SetSize(happiness);
@@ -153,7 +204,6 @@ public class StateManager : MonoBehaviour
     private IEnumerator playEmotion(EmotionStates emotion)
     {
         int i = (int)emotion;
-        GameObject cloud = gameObject.transform.Find("Cloud").gameObject;
         if(emotions[i].Cloud != -1)
             cloud.SetActive(true);
         else
@@ -161,7 +211,7 @@ public class StateManager : MonoBehaviour
 
         AssigEmotion(i);
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(emoteduration);
 
         i = (int)EmotionStates.Normal;
         AssigEmotion(i);
