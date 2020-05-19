@@ -58,39 +58,39 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11376}
+      Script: {instanceID: 11222}
     - Class: 114
-      Script: {instanceID: 11532}
+      Script: {instanceID: 11382}
     - Class: 114
-      Script: {instanceID: 11572}
+      Script: {instanceID: 11422}
     - Class: 114
-      Script: {instanceID: 11810}
+      Script: {instanceID: 11666}
     - Class: 114
-      Script: {instanceID: 11836}
+      Script: {instanceID: 11692}
     - Class: 114
-      Script: {instanceID: 11844}
+      Script: {instanceID: 11700}
     - Class: 114
-      Script: {instanceID: 11846}
+      Script: {instanceID: 11702}
     - Class: 114
-      Script: {instanceID: 11934}
+      Script: {instanceID: 11790}
     - Class: 114
-      Script: {instanceID: 12042}
+      Script: {instanceID: 11898}
     - Class: 114
-      Script: {instanceID: 12122}
+      Script: {instanceID: 11978}
     - Class: 114
-      Script: {instanceID: 12660}
+      Script: {instanceID: 12532}
     - Class: 114
-      Script: {instanceID: 12830}
+      Script: {instanceID: 12702}
     - Class: 114
-      Script: {instanceID: 13024}
+      Script: {instanceID: 12904}
     - Class: 114
-      Script: {instanceID: 13120}
+      Script: {instanceID: 13000}
     - Class: 114
-      Script: {instanceID: 13288}
+      Script: {instanceID: 13172}
     - Class: 114
-      Script: {instanceID: 13556}
+      Script: {instanceID: 13446}
     - Class: 114
-      Script: {instanceID: 13588}
+      Script: {instanceID: 13478}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1110,7 +1110,7 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
-      Hash: 706c39c6d1c4ec54aef5b5754d1d4056
+      Hash: 1e5b1b86522dda3370904d1af9f77c25
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: StateManager
@@ -1711,4 +1711,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/Main Scene.unity
-  playerPath: D:/GitHub/ViPet/ViPet/vuforia 8.apk
+  playerPath: C:/Users/EricKnela/Downloads/vuforia 8.apk
