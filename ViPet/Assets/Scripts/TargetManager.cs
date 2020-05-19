@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class TargetManager : MonoBehaviour
 {
-    public GameObject go;
-
+    public GameObject prefab;
+    GameObject GO;
     public void CreateObject()
     {
-        go.SetActive(true);//Instantiate(go, transform.position, transform.rotation);
+        GO = Instantiate(prefab, transform.position, transform.rotation);
+        GO.SetActive(true);
     }
 
     public void DestroyObject()
     {
-        go.SetActive(false); //Destroy(go);
+        Destroy(GO);
     }
 }
