@@ -16,10 +16,11 @@ public class SwipeScript : MonoBehaviour {
 	Rigidbody rb;
     public GameObject camera;
     public GameObject world;
-    bool thrown = false;
+    public bool thrown = false;
     bool to_update = false;
     Vector3 initialPos;
 
+    public GameObject Buizel;
     public GameObject recover;
 
 	void Awake()
@@ -35,18 +36,15 @@ public class SwipeScript : MonoBehaviour {
         {
             if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
             {
-
                 touchTimeStart = Time.time;
                 if (Input.touchCount > 0)
                     startPos = Input.GetTouch(0).position;
                 else
                     startPos = Input.mousePosition;
-
             }
 
             if (Input.GetMouseButtonUp(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended))
             {
-
                 touchTimeFinish = Time.time;
 
                 timeInterval = touchTimeFinish - touchTimeStart;
@@ -61,11 +59,11 @@ public class SwipeScript : MonoBehaviour {
 
                 rb.isKinematic = false;
                 gameObject.transform.SetParent(world.transform, true);
-                float x = -direction.x * throwForceInXandY;//Mathf.Clamp(-direction.x * throwForceInXandY, -15, 15);
-                float y = -direction.y * throwForceInXandY; //Mathf.Clamp(-direction.y * throwForceInXandY, -35, 35);
+                float x = -direction.x * throwForceInXandY;
+                float y = -direction.y * throwForceInXandY; 
 
                 rb.AddRelativeForce(new Vector3(x, y, throwForceInZ / timeInterval));
-
+                Buizel.GetComponent<StateManager>().playing = true;
                 thrown = true;
                 recover.SetActive(true);
             }
@@ -79,29 +77,40 @@ public class SwipeScript : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.tag == "Player" && thrown)
         {
-            gameObject.transform.SetParent(other.transform, true);
-            gameObject.transform.localPosition = new Vector3(0, 0.68f, 0);
+            gameObject.transform.SetParent(Buizel.transform);
+            gameObject.transform.localPosition = new Vector3(0, 0.68f, 0.4f);
             gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
             recover.SetActive(false);
             thrown = false;
             rb.isKinematic = true;
-        }else if(other.gameObject.tag == "Respawn" && !thrown)
+            Buizel.GetComponent<MovementAI>().picked = true;
+            if(Buizel.GetComponent<StateManager>().playing)
+                Buizel.GetComponent<MovementAI>().setDestination(new Vector3(camera.transform.Find("Collider").transform.position.x, 0, camera.transform.Find("Collider").transform.position.z + 0.2f));
+        }
+        else if(other.gameObject.tag == "Respawn" && !thrown)
         {
             RecoverObject();
             thrown = false;
             to_update = false;
+            if (Buizel.GetComponent<StateManager>().playing)
+            {
+                Buizel.GetComponent<MovementAI>().setDestination(new Vector3(camera.transform.Find("Collider").transform.position.x, 0, camera.transform.Find("Collider").transform.position.z + 0.8f));
+                Buizel.GetComponent<MovementAI>().Look(new Vector3(camera.transform.Find("Collider").transform.position.x, Buizel.transform.position.y, camera.transform.Find("Collider").transform.position.z));
+            }
         }
     }
 
     public void RecoverObject()
     {
-        gameObject.transform.SetParent(camera.transform, true);
+        gameObject.transform.SetParent(camera.transform);
         gameObject.transform.localPosition = initialPos;
         gameObject.transform.localEulerAngles = new Vector3(0,0,0);
         recover.SetActive(false);
         rb.isKinematic = true;
         to_update = true;
+        Buizel.GetComponent<MovementAI>().moving = false;
+        Buizel.GetComponent<MovementAI>().picked = false;
     }
 }

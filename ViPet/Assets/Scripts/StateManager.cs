@@ -55,6 +55,8 @@ public class StateManager : MonoBehaviour
     private BarController HappinessBar;
     private BarController LoveBar;
 
+    public bool playing = false;
+    public bool eating = false;
     public float alimentation = 100;
     public float happiness = 100;
     public float love = 100;
@@ -85,7 +87,6 @@ public class StateManager : MonoBehaviour
     {
         if(Time.time - lastEmotionTime > 3)
         {
-            Debug.Log((int)alimentation % 15);
             if((int)alimentation % 15 == 0)
             {
                 queue[0] = 1;

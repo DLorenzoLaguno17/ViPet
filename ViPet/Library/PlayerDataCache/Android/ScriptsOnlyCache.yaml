@@ -3,6 +3,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - BarController
     - ButtonManager
+    - MovementAI
     - StateManager
     - SwipeScript
     - TargetManager
@@ -63,23 +64,25 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11224}
+      Script: {instanceID: 11222}
     - Class: 114
-      Script: {instanceID: 11384}
+      Script: {instanceID: 11382}
     - Class: 114
-      Script: {instanceID: 11424}
+      Script: {instanceID: 11422}
     - Class: 114
-      Script: {instanceID: 11630}
+      Script: {instanceID: 11628}
     - Class: 114
-      Script: {instanceID: 11670}
+      Script: {instanceID: 11668}
     - Class: 114
-      Script: {instanceID: 11696}
+      Script: {instanceID: 11694}
+    - Class: 114
+      Script: {instanceID: 11702}
     - Class: 114
       Script: {instanceID: 11704}
     - Class: 114
-      Script: {instanceID: 11706}
+      Script: {instanceID: 11792}
     - Class: 114
-      Script: {instanceID: 11794}
+      Script: {instanceID: 11796}
     - Class: 114
       Script: {instanceID: 11856}
     - Class: 114
@@ -114,6 +117,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
+    - Class: 195
+      Script: {instanceID: 0}
     - Class: 196
       Script: {instanceID: 0}
     - Class: 213
@@ -123,6 +128,8 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 238
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -515,6 +522,12 @@ ScriptsOnlyBuild:
     assemblyName: VuforiaScripts.dll
     namespaceName: 
     className: DefaultInitializationErrorHandler
+  - hash:
+      serializedVersion: 2
+      Hash: ece3189ee6eed019107e5856a39e2025
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MovementAI
   - hash:
       serializedVersion: 2
       Hash: aba7b2852ef61d175dd9602e7723d5e5
@@ -1135,7 +1148,7 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
-      Hash: 839806de6c7719172e9b64bb4d0548ed
+      Hash: 62887ffce3ef86b2bb05e58fca9b0a79
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SwipeScript
@@ -1147,7 +1160,7 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
-      Hash: 691825af6cc030fefdaa6230d29bc7af
+      Hash: ba1a842fe386729290f64382028edff9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: StateManager
