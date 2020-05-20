@@ -182,13 +182,18 @@ public class StateManager : MonoBehaviour
 
                         newEmotion(EmotionStates.Love);
                     }
-                    else if (hit.collider.gameObject.name == "Ball")
-                    {
-                        newEmotion(EmotionStates.Angry);
-                    }
                 }
 
             }
+        }
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.name == "Ball")
+        {
+            newEmotion(EmotionStates.Angry);
         }
 
     }

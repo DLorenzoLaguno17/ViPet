@@ -13,14 +13,14 @@ GameObject:
   - component: {fileID: 7491222817556821921}
   - component: {fileID: 7491222817556821922}
   - component: {fileID: 7491222817556821926}
-  - component: {fileID: 7491222817556821927}
+  - component: {fileID: 1984247163}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7491222817556821923
 Transform:
   m_ObjectHideFlags: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7491222817556821932}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.053, z: 0}
-  m_LocalScale: {x: 0.07613373, y: 0.07613373, z: 0.07613373}
+  m_LocalScale: {x: 0.07952999, y: 0.07952999, z: 0.07952999}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -53,7 +53,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -104,14 +104,14 @@ Rigidbody:
   m_GameObject: {fileID: 7491222817556821932}
   serializedVersion: 2
   m_Mass: 0.5
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_Drag: 0.15
+  m_AngularDrag: 10
+  m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &7491222817556821927
+--- !u!114 &1984247163
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,6 +120,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7491222817556821932}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6cc8af53d1bf594bbb4f6f73aa62a0e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2592d57ad287ed943a8c3ad77a55b6af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  throwForceInXandY: 0.05
+  throwForceInZ: 0.1
+  camera: {fileID: 0}
+  world: {fileID: 0}
+  recover: {fileID: 0}

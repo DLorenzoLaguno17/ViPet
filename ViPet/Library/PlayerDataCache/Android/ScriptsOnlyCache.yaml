@@ -4,7 +4,7 @@ ScriptsOnlyBuild:
     - BarController
     - ButtonManager
     - StateManager
-    - SwipeBall
+    - SwipeScript
     - TargetManager
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -52,6 +52,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 54
       Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
     - Class: 81
@@ -61,45 +63,45 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11222}
+      Script: {instanceID: 11224}
     - Class: 114
-      Script: {instanceID: 11382}
+      Script: {instanceID: 11384}
     - Class: 114
-      Script: {instanceID: 11422}
+      Script: {instanceID: 11424}
     - Class: 114
-      Script: {instanceID: 11628}
+      Script: {instanceID: 11630}
     - Class: 114
-      Script: {instanceID: 11668}
+      Script: {instanceID: 11670}
     - Class: 114
-      Script: {instanceID: 11694}
-    - Class: 114
-      Script: {instanceID: 11702}
+      Script: {instanceID: 11696}
     - Class: 114
       Script: {instanceID: 11704}
     - Class: 114
-      Script: {instanceID: 11792}
+      Script: {instanceID: 11706}
     - Class: 114
-      Script: {instanceID: 11854}
+      Script: {instanceID: 11794}
     - Class: 114
-      Script: {instanceID: 11902}
+      Script: {instanceID: 11856}
     - Class: 114
-      Script: {instanceID: 12196}
+      Script: {instanceID: 11904}
     - Class: 114
-      Script: {instanceID: 12516}
+      Script: {instanceID: 12518}
     - Class: 114
-      Script: {instanceID: 12538}
+      Script: {instanceID: 12540}
     - Class: 114
-      Script: {instanceID: 12708}
+      Script: {instanceID: 12710}
     - Class: 114
-      Script: {instanceID: 12910}
+      Script: {instanceID: 12772}
     - Class: 114
-      Script: {instanceID: 13006}
+      Script: {instanceID: 12914}
     - Class: 114
-      Script: {instanceID: 13178}
+      Script: {instanceID: 13010}
     - Class: 114
-      Script: {instanceID: 13452}
+      Script: {instanceID: 13182}
     - Class: 114
-      Script: {instanceID: 13484}
+      Script: {instanceID: 13456}
+    - Class: 114
+      Script: {instanceID: 13488}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1131,6 +1133,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: Physics2DRaycaster
+  - hash:
+      serializedVersion: 2
+      Hash: 839806de6c7719172e9b64bb4d0548ed
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SwipeScript
   - hash:
       serializedVersion: 2
       Hash: c1933cc0a2f4ff6eb13333347497beb3

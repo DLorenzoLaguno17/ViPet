@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\StateManager.cs" />
     <Compile Include="Assets\Scripts\SwipeBall.cs" />
+    <Compile Include="Assets\Scripts\SwipeScript.cs" />
     <Compile Include="Assets\Scripts\TargetManager.cs" />
     <None Include="Assets\StreamingAssets\Vuforia\VuforiaMars_Images.xml" />
     <Reference Include="UnityEngine">

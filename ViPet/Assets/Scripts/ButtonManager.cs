@@ -9,20 +9,18 @@ public class ButtonManager : MonoBehaviour
     public StateManager manager = null;
     bool spawnedBall = false;
     bool spawnedBalla = false;
-    private GameObject instantiatedBall = null;
-    private GameObject instantiatedBalla = null;
 
     public void SpawnBall()
     {
         if (!spawnedBall)
         {
-            instantiatedBall = Instantiate(ball, transform.position, transform.rotation);
-            instantiatedBall.SetActive(true);
+            ball.SetActive(true);
             spawnedBall = true;
+            ball.GetComponent<SwipeScript>().RecoverObject();
         }
         else
         {
-            Destroy(instantiatedBall);
+            ball.SetActive(false);
             spawnedBall = false;
         }
         manager.love += 20.0f;
@@ -34,16 +32,15 @@ public class ButtonManager : MonoBehaviour
     {
         if (!spawnedBalla)
         {
-            instantiatedBalla = Instantiate(ball, transform.position, transform.rotation);
-            instantiatedBalla.SetActive(true);
-            spawnedBalla = true;
+            food.SetActive(true);
+            spawnedBall = true;
+            food.GetComponent<SwipeScript>().RecoverObject();
         }
         else
         {
-            Destroy(instantiatedBall);
-            spawnedBalla = false;
+            food.SetActive(false);
+            spawnedBall = false;
         }
-        Instantiate(food, transform.position, transform.rotation);
         manager.alimentation += 20.0f;
         if (manager.alimentation > 100)
             manager.alimentation = 100;

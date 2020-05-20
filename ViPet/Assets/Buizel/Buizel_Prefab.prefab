@@ -93,6 +93,50 @@ Transform:
   m_Father: {fileID: 1582659913905869758}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &422891465196939035
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3572224568139301758}
+  - component: {fileID: 1133033264945994323}
+  m_Layer: 0
+  m_Name: Detect Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3572224568139301758
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422891465196939035}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.0003057085}
+  m_LocalPosition: {x: -0.000028125214, y: 0.1035, z: -0.046000052}
+  m_LocalScale: {x: 0.08337, y: 0.14982, z: 0.111449994}
+  m_Children: []
+  m_Father: {fileID: 8878496595719576684}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1133033264945994323
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422891465196939035}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &437807932761565597
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,7 +955,7 @@ RectTransform:
   - {fileID: 4489091931359630843}
   - {fileID: 4489091932083368376}
   m_Father: {fileID: 8878496595719576684}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1428,9 +1472,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8878496595719576684}
   - component: {fileID: 4489091931574058453}
-  - component: {fileID: 479757636}
-  - component: {fileID: 2120898778}
-  - component: {fileID: 596157891}
+  - component: {fileID: 7841069097266991572}
   m_Layer: 0
   m_Name: Buizel_Prefab
   m_TagString: Untagged
@@ -1447,10 +1489,11 @@ Transform:
   m_GameObject: {fileID: 5579282939276406399}
   m_LocalRotation: {x: 0, y: 0.99999994, z: -0, w: -0.00030522322}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.16241679, y: 0.16241679, z: 0.16241679}
+  m_LocalScale: {x: 0.100000076, y: 0.1, z: 0.100000076}
   m_Children:
   - {fileID: 7286141138324757271}
   - {fileID: 1091634854114980922}
+  - {fileID: 3572224568139301758}
   - {fileID: 4489091931542036240}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1536,8 +1579,8 @@ MonoBehaviour:
   happiness: 100
   love: 100
   emoteduration: 1.5
---- !u!65 &479757636
-BoxCollider:
+--- !u!136 &7841069097266991572
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1546,35 +1589,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.91166013, y: 1.7430065, z: 1}
-  m_Center: {x: 0.0027943442, y: 0.84529716, z: 4.8927577e-14}
---- !u!65 &2120898778
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5579282939276406399}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.91166013, y: 1.7430065, z: 1}
-  m_Center: {x: 0.0027943442, y: 0.84529716, z: 4.8927577e-14}
---- !u!65 &596157891
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5579282939276406399}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.91166013, y: 1.7430065, z: 1}
-  m_Center: {x: 0.0027943442, y: 0.84529716, z: 4.8927577e-14}
+  m_Radius: 0.38
+  m_Height: 1.76
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!1 &5961100441278787170
 GameObject:
   m_ObjectHideFlags: 0

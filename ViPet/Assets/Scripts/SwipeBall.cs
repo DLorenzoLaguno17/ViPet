@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SwipeBall : MonoBehaviour
 {
@@ -42,6 +43,8 @@ public class SwipeBall : MonoBehaviour
 
             // Add force to ball's rigidbody
             rb.isKinematic = false;
+            Debug.Log(direction.x * throwForceInXandY);
+            Debug.Log(direction.y * throwForceInXandY);
             rb.AddForce(-direction.x * throwForceInXandY, -direction.y * throwForceInXandY, throwForceInZ / timeInterval);
         }
     }
