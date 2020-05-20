@@ -85,76 +85,11 @@ public class StateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Time.time - lastEmotionTime > 3)
-        {
-            if((int)alimentation % 15 == 0)
-            {
-                queue[0] = 1;
-                lastEmotionTime = Time.time;
-            }
-            if((int)happiness % 15 == 0)
-            {
-                queue[1] = 1;
-                lastEmotionTime = Time.time;
-            }
-            if ((int)love % 15 == 0)
-            {
-                queue[2] = 1;
-                lastEmotionTime = Time.time;
-            }
-        }
-
-        if(Time.time - lastEmotion > emoteduration + 0.5f)
-        {
-            if (queue[0] == 1)
-            {
-                if(alimentation < 50) { 
-                    newEmotion(EmotionStates.Hungry);
-                    queue[0] = 0;
-                    lastEmotion = Time.time;
-                }
-                else
-                {
-                    queue[0] = 0;
-                }
-            }
-            else if (queue[1] == 1)
-            {
-                if (happiness < 50)
-                {
-                    newEmotion(EmotionStates.Bored);
-                    queue[1] = 0;
-                    lastEmotion = Time.time;
-                }
-                else
-                {
-                    newEmotion(EmotionStates.Happy);
-                    queue[1] = 0;
-                    lastEmotion = Time.time;
-                }
-            }
-            else if (queue[2] == 1)
-            {
-                if (love < 50)
-                {
-                    newEmotion(EmotionStates.Sad);
-                    queue[2] = 0;
-                    lastEmotion = Time.time;
-                }
-                else
-                {
-                    newEmotion(EmotionStates.Love);
-                    queue[2] = 0;
-                    lastEmotion = Time.time;
-                }
-            }
-        }
-
         if (Time.time > lastTimeDecreased + 0.1)
         {
             lastTimeDecreased = Time.time;
 
-            if(alimentation > 0)
+            if (alimentation > 0)
                 alimentation -= 0.1f;
             if (happiness > 0)
                 happiness -= 0.1f;
@@ -166,54 +101,119 @@ public class StateManager : MonoBehaviour
             LoveBar.SetSize(love);
         }
 
-        foreach (Touch touch in Input.touches)
+        if (!playing && !eating)
         {
-            if (touch.phase == TouchPhase.Began)
+            if (Time.time - lastEmotionTime > 3)
             {
-                // Create a ray from the current touch coordinates
-                Ray ray = Camera.allCameras[0].ScreenPointToRay(touch.position);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
+                if((int)alimentation % 15 == 0)
                 {
-                    if (hit.collider.gameObject.name == "Buizel")
-                    {
-                        startPos = touch.position;
-                        startedTouching = true;
-                        hand.SetActive(true);
-                    }
+                    queue[0] = 1;
+                    lastEmotionTime = Time.time;
+                }
+                if((int)happiness % 15 == 0)
+                {
+                    queue[1] = 1;
+                    lastEmotionTime = Time.time;
+                }
+                if ((int)love % 15 == 0)
+                {
+                    queue[2] = 1;
+                    lastEmotionTime = Time.time;
                 }
             }
 
-            if (touch.phase == TouchPhase.Ended)
+            if(Time.time - lastEmotion > emoteduration + 0.5f)
             {
-                // Create a ray again to check where has released
-                Ray ray = Camera.allCameras[0].ScreenPointToRay(touch.position);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
+                if (queue[0] == 1)
                 {
-                    if (hit.collider.gameObject.name == "Buizel")
+                    if(alimentation < 50) { 
+                        newEmotion(EmotionStates.Hungry);
+                        lastEmotion = Time.time;
+                    }
+                    queue[0] = 0;
+                }
+                else if (queue[1] == 1)
+                {
+                    if (happiness < 50)
                     {
-                        // Get release finger position and calculate swipe direction in 2D space
-                        endPos = touch.position;
-                        direction = startPos - endPos;
+                        newEmotion(EmotionStates.Bored);
+                        lastEmotion = Time.time;
+                    }
+                    else
+                    {
+                        newEmotion(EmotionStates.Happy);
+                        lastEmotion = Time.time;
+                    }
+                    queue[1] = 0;
+                }
+                else if (queue[2] == 1)
+                {
+                    if (love < 50)
+                    {
+                        newEmotion(EmotionStates.Sad);
+                        lastEmotion = Time.time;
+                    }
+                    else
+                    {
+                        newEmotion(EmotionStates.Love);
+                        lastEmotion = Time.time;
+                    }
+                    queue[2] = 0;
+                }
+            }
 
-                        if (startedTouching)
+            foreach (Touch touch in Input.touches)
+            {
+                if (touch.phase == TouchPhase.Began)
+                {
+                    // Create a ray from the current touch coordinates
+                    Ray ray = Camera.allCameras[0].ScreenPointToRay(touch.position);
+                    RaycastHit hit;
+                    if (Physics.Raycast(ray, out hit))
+                    {
+                        if (hit.collider.gameObject.name == "Buizel")
                         {
-                            love += (Mathf.Abs(direction.magnitude * 0.01f));
-                            if (love > 100.0f) love = 100.0f;
-                            startedTouching = false;
-                            newEmotion(EmotionStates.Love);
+                            startPos = touch.position;
+                            startedTouching = true;
+                            hand.SetActive(true);
                         }
                     }
                 }
 
-                hand.SetActive(false);
+                if (touch.phase == TouchPhase.Ended)
+                {
+                    // Create a ray again to check where has released
+                    Ray ray = Camera.allCameras[0].ScreenPointToRay(touch.position);
+                    RaycastHit hit;
+                    if (Physics.Raycast(ray, out hit))
+                    {
+                        if (hit.collider.gameObject.name == "Buizel")
+                        {
+                            // Get release finger position and calculate swipe direction in 2D space
+                            endPos = touch.position;
+                            direction = startPos - endPos;
+
+                            if (startedTouching)
+                            {
+                                love += (Mathf.Abs(direction.magnitude * 0.01f));
+                                if (love > 100.0f) love = 100.0f;
+                                startedTouching = false;
+                                newEmotion(EmotionStates.Love);
+                            }
+                        }
+                    }
+
+                    hand.SetActive(false);
+                }
+
+                if (startedTouching)
+                {
+                    hand.transform.position = touch.position;
+                }
             }
 
-            if (startedTouching)
-            {
-                hand.transform.position = touch.position;
-            }
+        
+            //DO RANDOM STUFF
         }
     }
 
@@ -226,7 +226,7 @@ public class StateManager : MonoBehaviour
 
     }
 
-    private void newEmotion(EmotionStates emotion)
+    public void newEmotion(EmotionStates emotion)
     {
         if (routine != null)
             StopCoroutine(routine);

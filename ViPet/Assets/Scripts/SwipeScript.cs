@@ -121,16 +121,15 @@ public class SwipeScript : MonoBehaviour {
             gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
             if (Buizel.GetComponent<StateManager>().playing)
             {
-                //HAPPY
                 recover.SetActive(false);
                 Buizel.GetComponent<MovementAI>().setDestination(new Vector3(cam.transform.Find("Collider").transform.position.x, 0, cam.transform.Find("Collider").transform.position.z + 0.2f));
+                
             }
-            else
+            else if(Buizel.GetComponent<StateManager>().eating)
             {
-                //EAT
-                Buizel.GetComponent<StateManager>().eating = false;
                 Buizel.GetComponent<MovementAI>().setDestination(new Vector3(cam.transform.Find("Collider").transform.position.x, 0, cam.transform.Find("Collider").transform.position.z + 0.8f));
                 Buizel.GetComponent<MovementAI>().Look(new Vector3(cam.transform.Find("Collider").transform.position.x, Buizel.transform.position.y, cam.transform.Find("Collider").transform.position.z));
+                Buizel.GetComponent<MovementAI>().to_end = true;
             }
         }
         else if(other.gameObject.tag == "Respawn" && !thrown)
@@ -140,8 +139,11 @@ public class SwipeScript : MonoBehaviour {
             to_update = false;
             if (Buizel.GetComponent<StateManager>().playing)
             {
+                //HAPPY EMOTION HERE
+                Buizel.GetComponent<StateManager>().newEmotion(EmotionStates.Happy);
                 Buizel.GetComponent<MovementAI>().setDestination(new Vector3(cam.transform.Find("Collider").transform.position.x, 0, cam.transform.Find("Collider").transform.position.z + 0.8f));
                 Buizel.GetComponent<MovementAI>().Look(new Vector3(cam.transform.Find("Collider").transform.position.x, Buizel.transform.position.y, cam.transform.Find("Collider").transform.position.z));
+                Buizel.GetComponent<MovementAI>().to_end = true;
             }
         }
     }

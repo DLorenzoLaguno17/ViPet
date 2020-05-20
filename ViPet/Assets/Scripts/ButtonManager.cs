@@ -15,22 +15,16 @@ public class ButtonManager : MonoBehaviour
     {
         if (spawnedBalla)
         {
-            Buizel.GetComponent<StateManager>().eating = false;
-            food.SetActive(false);
-            spawnedBalla = false;
+            DisableFood();
+            GetComponent<StateManager>().newEmotion(EmotionStates.Sad);
         }
         if (!spawnedBall)
         {
-            ball.SetActive(true);
-            spawnedBall = true;
-            Buizel.GetComponent<StateManager>().playing = true;
-            ball.GetComponent<SwipeScript>().RecoverObject();
+            EnableBall();
         }
         else
         {
-            Buizel.GetComponent<StateManager>().playing = false;
-            ball.SetActive(false);
-            spawnedBall = false;
+            DisableBall();
         }
     }
 
@@ -38,22 +32,42 @@ public class ButtonManager : MonoBehaviour
     {
         if (spawnedBall)
         {
-            Buizel.GetComponent<StateManager>().playing = false;
-            ball.SetActive(false);
-            spawnedBall = false;
+            DisableBall();
         }
         if (!spawnedBalla)
         {
-            food.SetActive(true);
-            spawnedBalla = true;
-            Buizel.GetComponent<StateManager>().eating = true;
-            food.GetComponent<SwipeScript>().RecoverObject();
+            EnableFood();
         }
         else
         {
-            Buizel.GetComponent<StateManager>().eating = false;
-            food.SetActive(false);
-            spawnedBalla = false;
+            DisableFood();
         }
+    }
+
+    public void EnableFood()
+    {
+        food.SetActive(true);
+        spawnedBalla = true;
+        Buizel.GetComponent<StateManager>().eating = true;
+        food.GetComponent<SwipeScript>().RecoverObject();
+    }
+    public void EnableBall()
+    {
+        ball.SetActive(true);
+        spawnedBall = true;
+        Buizel.GetComponent<StateManager>().playing = true;
+        ball.GetComponent<SwipeScript>().RecoverObject();
+    }
+    public void DisableFood()
+    {
+        Buizel.GetComponent<StateManager>().eating = false; 
+        food.SetActive(false);
+        spawnedBalla = false;
+    }
+    public void DisableBall()
+    {
+        Buizel.GetComponent<StateManager>().playing = false;
+        ball.SetActive(false);
+        spawnedBall = false;
     }
 }

@@ -12,6 +12,7 @@ public class MovementAI : MonoBehaviour
     public bool calculated = false;
     public bool picked = false;
     public bool moving = false;
+    public bool to_end = false;
     public bool look = false;
     float lastTime = 0.0f;
     Vector3 destinyPos;
@@ -36,6 +37,7 @@ public class MovementAI : MonoBehaviour
             if (!picked)
             {
                 setDestination(new Vector3(ball.transform.position.x, 0, ball.transform.position.z));
+                to_end = false;
             }
         }
 
@@ -49,6 +51,13 @@ public class MovementAI : MonoBehaviour
         else
         {
             transform.LookAt(destinyLook);
+        }
+
+        if(!agent.pathPending && agent.pathStatus == NavMeshPathStatus.PathComplete && gameObject.GetComponent<StateManager>().eating && to_end && agent.remainingDistance < 0.01 && moving)
+        {
+            GameObject.Find("ButtonManager").GetComponent<ButtonManager>().DisableFood();
+            //EAT EMOTION HERE
+            GetComponent<StateManager>().newEmotion(EmotionStates.Full);
         }
     }
     public void setDestination(Vector3 dest)
