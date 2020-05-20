@@ -24,6 +24,9 @@ public class SwipeScript : MonoBehaviour {
     public GameObject Buizel;
     public GameObject recover;
 
+    public float distance2camera = 0.2f;
+    public float distance2wait = 0.8f;
+
     public bool Balltype = false;
 
 	void Awake()
@@ -122,12 +125,12 @@ public class SwipeScript : MonoBehaviour {
             if (Buizel.GetComponent<StateManager>().playing)
             {
                 recover.SetActive(false);
-                Buizel.GetComponent<MovementAI>().setDestination(new Vector3(cam.transform.Find("Collider").transform.position.x, 0, cam.transform.Find("Collider").transform.position.z + 0.2f));
+                Buizel.GetComponent<MovementAI>().setDestination(new Vector3(cam.transform.Find("Collider").transform.position.x, 0, cam.transform.Find("Collider").transform.position.z + distance2camera));
                 
             }
             else if(Buizel.GetComponent<StateManager>().eating)
             {
-                Buizel.GetComponent<MovementAI>().setDestination(new Vector3(cam.transform.Find("Collider").transform.position.x, 0, cam.transform.Find("Collider").transform.position.z + 0.8f));
+                Buizel.GetComponent<MovementAI>().setDestination(new Vector3(cam.transform.Find("Collider").transform.position.x, 0, cam.transform.Find("Collider").transform.position.z + distance2wait));
                 Buizel.GetComponent<MovementAI>().Look(new Vector3(cam.transform.Find("Collider").transform.position.x, Buizel.transform.position.y, cam.transform.Find("Collider").transform.position.z));
                 Buizel.GetComponent<MovementAI>().to_end = true;
             }
@@ -139,9 +142,7 @@ public class SwipeScript : MonoBehaviour {
             to_update = false;
             if (Buizel.GetComponent<StateManager>().playing)
             {
-                //HAPPY EMOTION HERE
-                Buizel.GetComponent<StateManager>().newEmotion(EmotionStates.Happy);
-                Buizel.GetComponent<MovementAI>().setDestination(new Vector3(cam.transform.Find("Collider").transform.position.x, 0, cam.transform.Find("Collider").transform.position.z + 0.8f));
+                Buizel.GetComponent<MovementAI>().setDestination(new Vector3(cam.transform.Find("Collider").transform.position.x, 0, cam.transform.Find("Collider").transform.position.z + distance2wait));
                 Buizel.GetComponent<MovementAI>().Look(new Vector3(cam.transform.Find("Collider").transform.position.x, Buizel.transform.position.y, cam.transform.Find("Collider").transform.position.z));
                 Buizel.GetComponent<MovementAI>().to_end = true;
             }

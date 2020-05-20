@@ -9,6 +9,14 @@ ScriptsOnlyBuild:
     - TargetManager
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    UnityEditor.Graphs.dll:
+    - UnityEditor.Graphs.AnimationBlendTree.Graph
+    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
+    - UnityEditor.Graphs.AnimationStateMachine.Graph
+    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
+    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -57,7 +65,19 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 90
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -102,9 +122,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13182}
     - Class: 114
-      Script: {instanceID: 13456}
+      Script: {instanceID: 13458}
     - Class: 114
-      Script: {instanceID: 13488}
+      Script: {instanceID: 13490}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -272,7 +292,7 @@ ScriptsOnlyBuild:
     className: RectMask2D
   - hash:
       serializedVersion: 2
-      Hash: 267e9e5334152c646afbada9de4e68ba
+      Hash: da0c15e75e629a3c7d27117e89b53d58
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ButtonManager
@@ -524,7 +544,7 @@ ScriptsOnlyBuild:
     className: DefaultInitializationErrorHandler
   - hash:
       serializedVersion: 2
-      Hash: ece3189ee6eed019107e5856a39e2025
+      Hash: 8b1afd270d36e9d633d859a79f56eddf
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MovementAI
@@ -1148,7 +1168,7 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
-      Hash: 62887ffce3ef86b2bb05e58fca9b0a79
+      Hash: dbeb18ab289bbc147d10e203a984a040
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SwipeScript
@@ -1160,7 +1180,7 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
-      Hash: ba1a842fe386729290f64382028edff9
+      Hash: 800605df6fbd6e91e1a2cdcc7965390c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: StateManager
@@ -1224,6 +1244,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: PlayModeRunnerCallback
+  - hash:
+      serializedVersion: 2
+      Hash: 738c23b7b3b2a8414d48e37a088fd920
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ButtonSound
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f

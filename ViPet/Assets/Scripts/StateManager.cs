@@ -50,6 +50,10 @@ public class StateManager : MonoBehaviour
     public EmotionStates current_emotion = 0;
     public GameObject cloud = null;
     public GameObject hand = null;
+    public GameObject collider_grab = null;
+    public Animator anim;
+    public List<AudioClip> clips;
+    public AudioSource source;
 
     private BarController AlimentationBar;
     private BarController HappinessBar;
@@ -103,6 +107,8 @@ public class StateManager : MonoBehaviour
 
         if (!playing && !eating)
         {
+            collider_grab.GetComponent<BoxCollider>().enabled = false;
+
             if (Time.time - lastEmotionTime > 3)
             {
                 if((int)alimentation % 15 == 0)
@@ -212,8 +218,29 @@ public class StateManager : MonoBehaviour
                 }
             }
 
-        
+
             //DO RANDOM STUFF
+
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Happy") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            {
+                anim.SetBool("Happy", false);
+            }
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Sad") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            {
+                anim.SetBool("Sad", false);
+            }
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Angry") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            {
+                anim.SetBool("Angry", false);
+            }
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Eat") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            {
+                anim.SetBool("Eat", false);
+            }
+        }
+        else
+        {
+            collider_grab.GetComponent<BoxCollider>().enabled = true;
         }
     }
 
@@ -229,7 +256,9 @@ public class StateManager : MonoBehaviour
     public void newEmotion(EmotionStates emotion)
     {
         if (routine != null)
+        {
             StopCoroutine(routine);
+        }
         routine = playEmotion(emotion);
         StartCoroutine(routine);
     }
@@ -243,8 +272,11 @@ public class StateManager : MonoBehaviour
             cloud.SetActive(false);
 
         AssigEmotion(i);
+        setAnim(emotion, true);
 
         yield return new WaitForSeconds(emoteduration);
+
+        setAnim(emotion, false);
 
         i = (int)EmotionStates.Normal;
         AssigEmotion(i);
@@ -261,6 +293,73 @@ public class StateManager : MonoBehaviour
         if(emotions[i].Cloud != -1)
             rect.position = clouds[0].offsets[emotions[i].Cloud - 1];
         clouds[0].raw.uvRect = rect;
+    }
+
+    void setAnim(EmotionStates emotion,bool enable)
+    {
+        anim.ForceStateNormalizedTime(0);
+        if (emotion == EmotionStates.Angry)
+        {
+            source.clip = clips[2];
+            anim.SetBool("Angry", enable);
+            anim.SetBool("Sad", false);
+            anim.SetBool("Happy", false);
+            anim.SetBool("Eat", false);
+            anim.SetBool("Walk", false);
+        }
+        else if (emotion == EmotionStates.Bored)
+        {
+            source.clip = clips[3];
+            anim.SetBool("Angry", false);
+            anim.SetBool("Bored", enable);
+            anim.SetBool("Happy", false);
+            anim.SetBool("Eat", false);
+            anim.SetBool("Walk", false);
+        }
+        else if (emotion == EmotionStates.Happy || emotion == EmotionStates.Love)
+        {
+            source.clip = clips[0];
+            anim.SetBool("Angry", false);
+            anim.SetBool("Sad", false);
+            anim.SetBool("Happy", enable);
+            anim.SetBool("Eat", false);
+            anim.SetBool("Walk", false);
+        }
+        else if(emotion == EmotionStates.Full)
+        {
+            source.clip = clips[1];
+            anim.SetBool("Angry", false);
+            anim.SetBool("Sad", false);
+            anim.SetBool("Happy", false);
+            anim.SetBool("Walk", false);
+            anim.SetBool("Eat", enable);
+            if (enable)
+                lastEmotion = Time.time;
+        }
+        else if (emotion == EmotionStates.Hungry || emotion == EmotionStates.Sad)
+        {
+            source.clip = clips[3];
+            anim.SetBool("Angry", false);
+            anim.SetBool("Sad", false);
+            anim.SetBool("Happy", false);
+            anim.SetBool("Eat", false);
+            anim.SetBool("Walk", false);
+        }
+        else
+        {
+            anim.SetBool("Angry", false);
+            anim.SetBool("Sad", false);
+            anim.SetBool("Happy", false);
+            anim.SetBool("Eat", false);
+            anim.SetBool("Walk", false);
+        }
+
+        if (enable == true)
+        {
+            if (source.isPlaying)
+                source.Stop();
+            source.Play();
+        }
     }
 
 

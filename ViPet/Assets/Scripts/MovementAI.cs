@@ -53,15 +53,26 @@ public class MovementAI : MonoBehaviour
             transform.LookAt(destinyLook);
         }
 
-        if(!agent.pathPending && agent.pathStatus == NavMeshPathStatus.PathComplete && gameObject.GetComponent<StateManager>().eating && to_end && agent.remainingDistance < 0.01 && moving)
+        if(!agent.pathPending && agent.pathStatus == NavMeshPathStatus.PathComplete && to_end && agent.remainingDistance < 0.01 && moving)
         {
-            GameObject.Find("ButtonManager").GetComponent<ButtonManager>().DisableFood();
-            //EAT EMOTION HERE
-            GetComponent<StateManager>().newEmotion(EmotionStates.Full);
+            
+            if (gameObject.GetComponent<StateManager>().eating)
+            {
+                GameObject.Find("ButtonManager").GetComponent<ButtonManager>().DisableFood();
+                //EAT EMOTION HERE
+                GetComponent<StateManager>().newEmotion(EmotionStates.Full);
+            }
+            else if (gameObject.GetComponent<StateManager>().playing)
+            {
+                //HAPPY EMOTION HERE
+                GetComponent<StateManager>().newEmotion(EmotionStates.Happy);
+            }
+            to_end = false;
         }
     }
     public void setDestination(Vector3 dest)
     {
+        GetComponent<StateManager>().anim.SetBool("Walk", true);
         agent.SetDestination(dest);
         destinyPos = dest;
         moving = true;
