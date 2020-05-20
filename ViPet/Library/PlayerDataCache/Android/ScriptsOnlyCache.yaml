@@ -64,47 +64,47 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11222}
+      Script: {instanceID: 11466}
     - Class: 114
-      Script: {instanceID: 11382}
+      Script: {instanceID: 11622}
     - Class: 114
-      Script: {instanceID: 11422}
+      Script: {instanceID: 11662}
     - Class: 114
-      Script: {instanceID: 11628}
+      Script: {instanceID: 11864}
     - Class: 114
-      Script: {instanceID: 11668}
+      Script: {instanceID: 11902}
     - Class: 114
-      Script: {instanceID: 11694}
+      Script: {instanceID: 11928}
     - Class: 114
-      Script: {instanceID: 11702}
+      Script: {instanceID: 11936}
     - Class: 114
-      Script: {instanceID: 11704}
+      Script: {instanceID: 11938}
     - Class: 114
-      Script: {instanceID: 11792}
+      Script: {instanceID: 12026}
     - Class: 114
-      Script: {instanceID: 11796}
+      Script: {instanceID: 12030}
     - Class: 114
-      Script: {instanceID: 11856}
+      Script: {instanceID: 12090}
     - Class: 114
-      Script: {instanceID: 11904}
+      Script: {instanceID: 12138}
     - Class: 114
-      Script: {instanceID: 12518}
+      Script: {instanceID: 12736}
     - Class: 114
-      Script: {instanceID: 12540}
+      Script: {instanceID: 12758}
     - Class: 114
-      Script: {instanceID: 12710}
+      Script: {instanceID: 12928}
     - Class: 114
-      Script: {instanceID: 12772}
+      Script: {instanceID: 12986}
     - Class: 114
-      Script: {instanceID: 12914}
+      Script: {instanceID: 13124}
     - Class: 114
-      Script: {instanceID: 13010}
+      Script: {instanceID: 13220}
     - Class: 114
-      Script: {instanceID: 13182}
+      Script: {instanceID: 13388}
     - Class: 114
-      Script: {instanceID: 13456}
+      Script: {instanceID: 13656}
     - Class: 114
-      Script: {instanceID: 13488}
+      Script: {instanceID: 13688}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1761,4 +1761,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/Main Scene.unity
-  playerPath: C:/Users/EricKnela/Downloads/vuforia 8.apk
+  playerPath: D:/GitHub/ViPet/ViPet/vuforia 8.apk
