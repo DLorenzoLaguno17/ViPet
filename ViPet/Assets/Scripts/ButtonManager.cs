@@ -9,40 +9,51 @@ public class ButtonManager : MonoBehaviour
     public StateManager manager = null;
     bool spawnedBall = false;
     bool spawnedBalla = false;
+    public GameObject Buizel;
 
     public void SpawnBall()
     {
+        if (spawnedBalla)
+        {
+            Buizel.GetComponent<StateManager>().eating = false;
+            food.SetActive(false);
+            spawnedBalla = false;
+        }
         if (!spawnedBall)
         {
             ball.SetActive(true);
             spawnedBall = true;
+            Buizel.GetComponent<StateManager>().playing = true;
             ball.GetComponent<SwipeScript>().RecoverObject();
         }
         else
         {
+            Buizel.GetComponent<StateManager>().playing = false;
             ball.SetActive(false);
             spawnedBall = false;
         }
-        manager.love += 20.0f;
-        if (manager.love > 100)
-            manager.love = 100;
     }
 
     public void SpawnFood()
     {
+        if (spawnedBall)
+        {
+            Buizel.GetComponent<StateManager>().playing = false;
+            ball.SetActive(false);
+            spawnedBall = false;
+        }
         if (!spawnedBalla)
         {
             food.SetActive(true);
-            spawnedBall = true;
+            spawnedBalla = true;
+            Buizel.GetComponent<StateManager>().eating = true;
             food.GetComponent<SwipeScript>().RecoverObject();
         }
         else
         {
+            Buizel.GetComponent<StateManager>().eating = false;
             food.SetActive(false);
-            spawnedBall = false;
+            spawnedBalla = false;
         }
-        manager.alimentation += 20.0f;
-        if (manager.alimentation > 100)
-            manager.alimentation = 100;
     }
 }

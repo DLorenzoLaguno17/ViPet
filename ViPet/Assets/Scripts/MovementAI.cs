@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class MovementAI : MonoBehaviour
 {
     public GameObject ball;
-    public GameObject camera;
+    public GameObject cam;
     NavMeshAgent agent;
     NavMeshPath path;
     public bool calculated = false;

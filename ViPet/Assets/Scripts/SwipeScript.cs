@@ -14,18 +14,21 @@ public class SwipeScript : MonoBehaviour {
 	float throwForceInZ = 50f; // to control throw force in Z direction
 
 	Rigidbody rb;
-    public GameObject camera;
+    public GameObject cam;
     public GameObject world;
     public bool thrown = false;
     bool to_update = false;
     Vector3 initialPos;
+    bool sliding = false;
 
     public GameObject Buizel;
     public GameObject recover;
 
+    public bool Balltype = false;
+
 	void Awake()
 	{
-		rb = GetComponent<Rigidbody> ();
+		rb = GetComponent<Rigidbody>();
         initialPos = gameObject.transform.localPosition;
     }
 
@@ -36,14 +39,35 @@ public class SwipeScript : MonoBehaviour {
         {
             if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
             {
-                touchTimeStart = Time.time;
-                if (Input.touchCount > 0)
-                    startPos = Input.GetTouch(0).position;
-                else
-                    startPos = Input.mousePosition;
+                RaycastHit hit;
+                Ray ray;
+                if (Input.touchCount > 0) { 
+                    ray = Camera.allCameras[0].ScreenPointToRay(Input.GetTouch(0).position);
+                    if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.tag.Equals("Item"))
+                    {
+                        sliding = true;
+                    }
+                }
+                if (Input.GetMouseButton(0))
+                {
+                    ray = Camera.allCameras[0].ScreenPointToRay(Input.mousePosition);
+                    if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.tag.Equals("Item"))
+                    {
+                        sliding = true;
+                    }
+                }
+
+                if (sliding)
+                {
+                    touchTimeStart = Time.time;
+                    if (Input.touchCount > 0)
+                        startPos = Input.GetTouch(0).position;
+                    else
+                        startPos = Input.mousePosition;
+                }
             }
 
-            if (Input.GetMouseButtonUp(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended))
+            if ((Input.GetMouseButtonUp(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)) && sliding)
             {
                 touchTimeFinish = Time.time;
 
@@ -63,12 +87,22 @@ public class SwipeScript : MonoBehaviour {
                 float y = -direction.y * throwForceInXandY; 
 
                 rb.AddRelativeForce(new Vector3(x, y, throwForceInZ / timeInterval));
-                Buizel.GetComponent<StateManager>().playing = true;
+                if (Balltype)
+                {
+                    recover.SetActive(true);
+                    Buizel.GetComponent<StateManager>().playing = true;
+                    Buizel.GetComponent<MovementAI>().ball = gameObject;
+                }
+                else
+                {
+                    Buizel.GetComponent<StateManager>().eating = true;
+                    Buizel.GetComponent<MovementAI>().ball = gameObject;
+                }
                 thrown = true;
-                recover.SetActive(true);
+                sliding = false;
             }
         }
-        if (to_update && Input.GetMouseButtonUp(0))
+        if (to_update)
         {
             thrown = false;
             to_update = false;
@@ -79,15 +113,25 @@ public class SwipeScript : MonoBehaviour {
     {
         if(other.gameObject.tag == "Player" && thrown)
         {
-            gameObject.transform.SetParent(Buizel.transform);
-            gameObject.transform.localPosition = new Vector3(0, 0.68f, 0.4f);
-            gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
-            recover.SetActive(false);
             thrown = false;
             rb.isKinematic = true;
             Buizel.GetComponent<MovementAI>().picked = true;
-            if(Buizel.GetComponent<StateManager>().playing)
-                Buizel.GetComponent<MovementAI>().setDestination(new Vector3(camera.transform.Find("Collider").transform.position.x, 0, camera.transform.Find("Collider").transform.position.z + 0.2f));
+            gameObject.transform.SetParent(Buizel.transform);
+            gameObject.transform.localPosition = new Vector3(0, 0.68f, 0.4f);
+            gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
+            if (Buizel.GetComponent<StateManager>().playing)
+            {
+                //HAPPY
+                recover.SetActive(false);
+                Buizel.GetComponent<MovementAI>().setDestination(new Vector3(cam.transform.Find("Collider").transform.position.x, 0, cam.transform.Find("Collider").transform.position.z + 0.2f));
+            }
+            else
+            {
+                //EAT
+                Buizel.GetComponent<StateManager>().eating = false;
+                Buizel.GetComponent<MovementAI>().setDestination(new Vector3(cam.transform.Find("Collider").transform.position.x, 0, cam.transform.Find("Collider").transform.position.z + 0.8f));
+                Buizel.GetComponent<MovementAI>().Look(new Vector3(cam.transform.Find("Collider").transform.position.x, Buizel.transform.position.y, cam.transform.Find("Collider").transform.position.z));
+            }
         }
         else if(other.gameObject.tag == "Respawn" && !thrown)
         {
@@ -96,15 +140,15 @@ public class SwipeScript : MonoBehaviour {
             to_update = false;
             if (Buizel.GetComponent<StateManager>().playing)
             {
-                Buizel.GetComponent<MovementAI>().setDestination(new Vector3(camera.transform.Find("Collider").transform.position.x, 0, camera.transform.Find("Collider").transform.position.z + 0.8f));
-                Buizel.GetComponent<MovementAI>().Look(new Vector3(camera.transform.Find("Collider").transform.position.x, Buizel.transform.position.y, camera.transform.Find("Collider").transform.position.z));
+                Buizel.GetComponent<MovementAI>().setDestination(new Vector3(cam.transform.Find("Collider").transform.position.x, 0, cam.transform.Find("Collider").transform.position.z + 0.8f));
+                Buizel.GetComponent<MovementAI>().Look(new Vector3(cam.transform.Find("Collider").transform.position.x, Buizel.transform.position.y, cam.transform.Find("Collider").transform.position.z));
             }
         }
     }
 
     public void RecoverObject()
     {
-        gameObject.transform.SetParent(camera.transform);
+        gameObject.transform.SetParent(cam.transform);
         gameObject.transform.localPosition = initialPos;
         gameObject.transform.localEulerAngles = new Vector3(0,0,0);
         recover.SetActive(false);

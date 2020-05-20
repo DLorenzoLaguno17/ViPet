@@ -1626,7 +1626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 0}
-  camera: {fileID: 0}
+  cam: {fileID: 0}
   calculated: 0
   picked: 0
   moving: 0
