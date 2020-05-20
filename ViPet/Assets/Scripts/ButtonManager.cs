@@ -23,9 +23,6 @@ public class ButtonManager : MonoBehaviour
             ball.SetActive(false);
             spawnedBall = false;
         }
-        manager.love += 20.0f;
-        if (manager.love > 100)
-            manager.love = 100;
     }
 
     public void SpawnFood()
@@ -41,8 +38,5 @@ public class ButtonManager : MonoBehaviour
             food.SetActive(false);
             spawnedBall = false;
         }
-        manager.alimentation += 20.0f;
-        if (manager.alimentation > 100)
-            manager.alimentation = 100;
     }
 }
