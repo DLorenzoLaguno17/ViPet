@@ -934,6 +934,7 @@ GameObject:
   - component: {fileID: 258083343}
   - component: {fileID: 258083342}
   - component: {fileID: 258083341}
+  - component: {fileID: 258083344}
   m_Layer: 5
   m_Name: BallButton
   m_TagString: Untagged
@@ -1051,34 +1052,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 258083339}
   m_CullTransparentMesh: 0
---- !u!21 &312204990
-Material:
-  serializedVersion: 6
+--- !u!114 &258083344
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 'Target3Material
-
-    27662'
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: cd4fc523dbd6def4bb537e4898f05c7a, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
+  m_GameObject: {fileID: 258083339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22d778ae9ee1a4b46a9d959f184e5e0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: 55be0224b717d76448189acbfd4a4454, type: 3}
 --- !u!43 &316080947
 Mesh:
   m_ObjectHideFlags: 0
@@ -1887,7 +1873,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 312204990}
+  - {fileID: 1078220972}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1960,16 +1946,22 @@ MonoBehaviour:
   mWidth: 0.2
   mHeight: 0.2
   mRuntimeTexture: {fileID: 2800000, guid: cd4fc523dbd6def4bb537e4898f05c7a, type: 3}
---- !u!21 &964148092
+--- !u!224 &1052869165 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5496135589704973846, guid: aab23c1b5382750469048a2b09d02527,
+    type: 3}
+  m_PrefabInstance: {fileID: 200310525}
+  m_PrefabAsset: {fileID: 0}
+--- !u!21 &1078220972
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 'Target2Material
+  m_Name: 'Target3Material
 
-    27730'
+    21572'
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -1982,18 +1974,12 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 967a313a2edcb3b44b6fa51f13c37d6b, type: 3}
+        m_Texture: {fileID: 2800000, guid: cd4fc523dbd6def4bb537e4898f05c7a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
     m_Colors:
     - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
---- !u!224 &1052869165 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5496135589704973846, guid: aab23c1b5382750469048a2b09d02527,
-    type: 3}
-  m_PrefabInstance: {fileID: 200310525}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1084134645
 GameObject:
   m_ObjectHideFlags: 0
@@ -2133,7 +2119,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 964148092}
+  - {fileID: 1246520576}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2238,6 +2224,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &1246520576
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'Target2Material
+
+    21598'
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 967a313a2edcb3b44b6fa51f13c37d6b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors:
+    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
 --- !u!1 &1339534090
 GameObject:
   m_ObjectHideFlags: 0
@@ -2250,6 +2264,7 @@ GameObject:
   - component: {fileID: 1339534094}
   - component: {fileID: 1339534093}
   - component: {fileID: 1339534092}
+  - component: {fileID: 1339534095}
   m_Layer: 5
   m_Name: FoodButton
   m_TagString: Untagged
@@ -2367,6 +2382,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1339534090}
   m_CullTransparentMesh: 0
+--- !u!114 &1339534095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339534090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22d778ae9ee1a4b46a9d959f184e5e0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: 55be0224b717d76448189acbfd4a4454, type: 3}
 --- !u!43 &1473814153
 Mesh:
   m_ObjectHideFlags: 0
