@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 1133033264945994323}
   m_Layer: 0
   m_Name: Detect Collider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,11 +118,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422891465196939035}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.0003057085}
-  m_LocalPosition: {x: -0.000028125214, y: 0.1035, z: -0.046000052}
-  m_LocalScale: {x: 0.08337, y: 0.14982, z: 0.111449994}
+  m_LocalPosition: {x: 0.07, y: 0.8, z: 0.62}
+  m_LocalScale: {x: 0.063625485, y: 0.14982, z: 0.111449994}
   m_Children: []
   m_Father: {fileID: 8878496595719576684}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1133033264945994323
 BoxCollider:
@@ -132,10 +132,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422891465196939035}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 14.7, y: 11.31, z: 7.93}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &437807932761565597
 GameObject:
@@ -955,7 +955,7 @@ RectTransform:
   - {fileID: 4489091931359630843}
   - {fileID: 4489091932083368376}
   m_Father: {fileID: 8878496595719576684}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1339,7 +1339,7 @@ Transform:
   m_GameObject: {fileID: 5344739105839062245}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.54, y: 2.54, z: 2.54}
   m_Children: []
   m_Father: {fileID: 8878496595719576684}
   m_RootOrder: 1
@@ -1473,6 +1473,9 @@ GameObject:
   - component: {fileID: 8878496595719576684}
   - component: {fileID: 4489091931574058453}
   - component: {fileID: 7841069097266991572}
+  - component: {fileID: 2142649009}
+  - component: {fileID: 2142649007}
+  - component: {fileID: 2142649008}
   m_Layer: 0
   m_Name: Buizel_Prefab
   m_TagString: Untagged
@@ -1489,12 +1492,12 @@ Transform:
   m_GameObject: {fileID: 5579282939276406399}
   m_LocalRotation: {x: 0, y: 0.99999994, z: -0, w: -0.00030522322}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.100000076, y: 0.1, z: 0.100000076}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 7286141138324757271}
   - {fileID: 1091634854114980922}
-  - {fileID: 3572224568139301758}
   - {fileID: 4489091931542036240}
+  - {fileID: 3572224568139301758}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180.03499, z: 0}
@@ -1573,8 +1576,9 @@ MonoBehaviour:
     Cloud: -1
   current_emotion: 7
   cloud: {fileID: 4489091931542036247}
-  particle: {fileID: 6865974819297180675, guid: 49b7c4ac9ef964648939dd2d1f906130,
-    type: 3}
+  hand: {fileID: 0}
+  playing: 0
+  eating: 0
   alimentation: 100
   happiness: 100
   love: 100
@@ -1593,6 +1597,62 @@ CapsuleCollider:
   m_Height: 1.76
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!54 &2142649009
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5579282939276406399}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
+--- !u!114 &2142649007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5579282939276406399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee4a34045142eec4d807e20212493792, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ball: {fileID: 0}
+  camera: {fileID: 0}
+  calculated: 0
+  picked: 0
+  moving: 0
+  look: 0
+--- !u!195 &2142649008
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5579282939276406399}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 0.4
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 0.4
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &5961100441278787170
 GameObject:
   m_ObjectHideFlags: 0
