@@ -28,7 +28,6 @@ public struct Emotions
     public int Cloud;
 }
 
-
 public enum EmotionStates
 {
     Love,
@@ -50,11 +49,11 @@ public class StateManager : MonoBehaviour
     IEnumerator routine = null;
     public EmotionStates current_emotion = 0;
     public GameObject cloud = null;
+    public GameObject hand = null;
 
     private BarController AlimentationBar;
     private BarController HappinessBar;
     private BarController LoveBar;
-    public GameObject particle;
 
     public float alimentation = 100;
     public float happiness = 100;
@@ -64,6 +63,9 @@ public class StateManager : MonoBehaviour
     float lastEmotion = 0;
     int[] queue = { 0, 0, 0 };
     public float emoteduration = 1.5f;
+
+    Vector2 startPos, endPos, direction;
+    bool startedTouching = false;
 
     // Start is called before the first frame update
     void Start()
@@ -147,7 +149,6 @@ public class StateManager : MonoBehaviour
             }
         }
 
-
         if (Time.time > lastTimeDecreased + 0.1)
         {
             lastTimeDecreased = Time.time;
@@ -175,18 +176,44 @@ public class StateManager : MonoBehaviour
                 {
                     if (hit.collider.gameObject.name == "Buizel")
                     {
-                        Instantiate(particle, transform.position, transform.rotation);
-                        love += 20.0f;
-                        if (love > 100)
-                            love = 100;
+                        startPos = touch.position;
+                        startedTouching = true;
+                        hand.SetActive(true);
+                    }
+                }
+            }
 
-                        newEmotion(EmotionStates.Love);
+            if (touch.phase == TouchPhase.Ended)
+            {
+                // Create a ray again to check where has released
+                Ray ray = Camera.allCameras[0].ScreenPointToRay(touch.position);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    if (hit.collider.gameObject.name == "Buizel")
+                    {
+                        // Get release finger position and calculate swipe direction in 2D space
+                        endPos = touch.position;
+                        direction = startPos - endPos;
+
+                        if (startedTouching)
+                        {
+                            love += (Mathf.Abs(direction.magnitude * 0.01f));
+                            if (love > 100.0f) love = 100.0f;
+                            startedTouching = false;
+                            newEmotion(EmotionStates.Love);
+                        }
                     }
                 }
 
+                hand.SetActive(false);
+            }
+
+            if (startedTouching)
+            {
+                hand.transform.position = touch.position;
             }
         }
-
     }
 
     private void OnCollisionEnter(Collision collision)
