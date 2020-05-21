@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\ButtonManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\MovementAI.cs" />
+    <Compile Include="Assets\Scripts\PlayButton.cs" />
     <Compile Include="Assets\Scripts\StateManager.cs" />
     <Compile Include="Assets\Scripts\SwipeBall.cs" />
     <Compile Include="Assets\Scripts\SwipeScript.cs" />

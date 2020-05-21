@@ -127,7 +127,6 @@ public class SwipeScript : MonoBehaviour {
             {
                 recover.SetActive(false);
                 Buizel.GetComponent<MovementAI>().setDestination(new Vector3(cam_col.transform.position.x, 0, cam_col.transform.position.z + distance2camera));
-                
             }
             else if(Buizel.GetComponent<StateManager>().eating)
             {
@@ -138,11 +137,11 @@ public class SwipeScript : MonoBehaviour {
         }
         else if(other.gameObject.tag == "Respawn" && !thrown)
         {
-            RecoverObject();
             thrown = false;
             to_update = false;
             if (Buizel.GetComponent<StateManager>().playing)
             {
+                RecoverObject();
                 Buizel.GetComponent<MovementAI>().setDestination(new Vector3(cam_col.transform.position.x, 0, cam_col.transform.position.z + distance2wait));
                 Buizel.GetComponent<MovementAI>().Look(new Vector3(cam_col.transform.position.x, Buizel.transform.position.y, cam_col.transform.position.z));
                 Buizel.GetComponent<MovementAI>().to_end = true;

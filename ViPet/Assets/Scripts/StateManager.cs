@@ -54,6 +54,8 @@ public class StateManager : MonoBehaviour
     public Animator anim;
     public List<AudioClip> clips;
     public AudioSource source;
+    public float gain = 20f;
+
 
     private BarController AlimentationBar;
     private BarController HappinessBar;
@@ -69,6 +71,8 @@ public class StateManager : MonoBehaviour
     float lastEmotion = 0;
     int[] queue = { 0, 0, 0 };
     public float emoteduration = 1.5f;
+    public float counter = 0.0f;
+
 
     Vector2 startPos, endPos, direction;
     bool startedTouching = false;
@@ -94,11 +98,11 @@ public class StateManager : MonoBehaviour
             lastTimeDecreased = Time.time;
 
             if (alimentation > 0)
-                alimentation -= 0.1f;
+                alimentation -= 0.2f;
             if (happiness > 0)
-                happiness -= 0.1f;
+                happiness -= 0.2f;
             if (love > 0)
-                love -= 0.1f;
+                love -= 0.2f;
 
             AlimentationBar.SetSize(alimentation);
             HappinessBar.SetSize(happiness);
@@ -109,24 +113,43 @@ public class StateManager : MonoBehaviour
         {
             collider_grab.GetComponent<BoxCollider>().enabled = false;
 
-            if (Time.time - lastEmotionTime > 3)
+            if ((int)alimentation % 20 == 0)
             {
-                if((int)alimentation % 15 == 0)
+                if (Time.time - lastEmotionTime > 10 && alimentation <= 0.0f)
+                {
+                    queue[0] = 1;
+                }
+                else if(alimentation > 0.0f)
                 {
                     queue[0] = 1;
                     lastEmotionTime = Time.time;
                 }
-                if((int)happiness % 15 == 0)
+            }
+            if((int)happiness % 20 == 0)
+            {
+                if (Time.time - lastEmotionTime > 10 && happiness <= 0.0f)
+                {
+                    queue[1] = 1;
+                }
+                else if (happiness > 0.0f)
                 {
                     queue[1] = 1;
                     lastEmotionTime = Time.time;
                 }
-                if ((int)love % 15 == 0)
+            }
+            if ((int)love % 20 == 0)
+            {
+                if (Time.time - lastEmotionTime > 10 && love <= 0.0f)
+                {
+                    queue[2] = 1;
+                }
+                else if (Time.time - lastEmotionTime > 1 && love > 0.0f)
                 {
                     queue[2] = 1;
                     lastEmotionTime = Time.time;
                 }
             }
+
 
             if(Time.time - lastEmotion > emoteduration + 0.5f)
             {
@@ -179,38 +202,36 @@ public class StateManager : MonoBehaviour
                     {
                         if (hit.collider.gameObject.name == "Buizel")
                         {
+                            counter = 0;
                             startPos = touch.position;
                             startedTouching = true;
                             hand.SetActive(true);
                         }
                     }
                 }
-
-                if (touch.phase == TouchPhase.Ended)
-                {
-                    // Create a ray again to check where has released
-                    Ray ray = Camera.allCameras[0].ScreenPointToRay(touch.position);
-                    RaycastHit hit;
-                    if (Physics.Raycast(ray, out hit))
-                    {
-                        if (hit.collider.gameObject.name == "Buizel")
-                        {
-                            // Get release finger position and calculate swipe direction in 2D space
-                            endPos = touch.position;
-                            direction = startPos - endPos;
-
-                            if (startedTouching)
-                            {
-                                love += (Mathf.Abs(direction.magnitude * 0.01f));
-                                if (love > 100.0f) love = 100.0f;
-                                startedTouching = false;
-                                newEmotion(EmotionStates.Love);
-                            }
-                        }
-                    }
-
-                    hand.SetActive(false);
+                if (touch.phase == TouchPhase.Moved) {
+                    counter += Time.deltaTime;
                 }
+
+                if (counter > 0.5)
+                {
+                    if (startedTouching)
+                    {
+                        startedTouching = false;
+                        counter = 0;
+                        UpdateSad(gain);
+                        if (love > 100.0f) love = 100.0f;
+                        newEmotion(EmotionStates.Love);
+                    }
+                }
+
+                if (touch.phase == TouchPhase.Ended || !startedTouching)
+                {
+                    hand.SetActive(false);
+                    startedTouching = false;
+                    counter = 0;
+                }
+
 
                 if (startedTouching)
                 {
@@ -244,10 +265,36 @@ public class StateManager : MonoBehaviour
         }
     }
 
+    public void UpdateSad(float value)
+    {
+        love += value;
+        if (love > 100)
+            love = 100;
+        if (love < 0)
+            love = 0;
+    }
+    public void UpdateHungry(float value)
+    {
+        alimentation += value;
+        if (alimentation > 100)
+            alimentation = 100;
+        if (alimentation < 0)
+            alimentation = 0;
+    }
+    public void UpdateBored(float value)
+    {
+        happiness += value;
+        if (happiness > 100)
+            happiness = 100;
+        if (happiness < 0)
+            happiness = 0;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.name == "Ball")
         {
+            UpdateSad(-gain);
             newEmotion(EmotionStates.Angry);
         }
 
@@ -320,7 +367,6 @@ public class StateManager : MonoBehaviour
         {
             source.clip = clips[0];
             anim.SetBool("Angry", false);
-            anim.SetBool("Sad", false);
             anim.SetBool("Happy", enable);
             anim.SetBool("Eat", false);
             anim.SetBool("Walk", false);
@@ -329,7 +375,6 @@ public class StateManager : MonoBehaviour
         {
             source.clip = clips[1];
             anim.SetBool("Angry", false);
-            anim.SetBool("Sad", false);
             anim.SetBool("Happy", false);
             anim.SetBool("Walk", false);
             anim.SetBool("Eat", enable);
@@ -340,7 +385,6 @@ public class StateManager : MonoBehaviour
         {
             source.clip = clips[3];
             anim.SetBool("Angry", false);
-            anim.SetBool("Sad", false);
             anim.SetBool("Happy", false);
             anim.SetBool("Eat", false);
             anim.SetBool("Walk", false);
@@ -348,7 +392,6 @@ public class StateManager : MonoBehaviour
         else
         {
             anim.SetBool("Angry", false);
-            anim.SetBool("Sad", false);
             anim.SetBool("Happy", false);
             anim.SetBool("Eat", false);
             anim.SetBool("Walk", false);

@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7390871704515345542, guid: 832d8f85c36a7ac46b6ce8083bde62ac, type: 3}
+  - {fileID: 2100000, guid: 87ebf90db7d6fcb4ab2a0578c138ca97, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -137,7 +137,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7390871704515345542, guid: 832d8f85c36a7ac46b6ce8083bde62ac, type: 3}
+  - {fileID: 2100000, guid: 87ebf90db7d6fcb4ab2a0578c138ca97, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -176,7 +176,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1765405238481047513
 Transform:
   m_ObjectHideFlags: 0
@@ -239,10 +239,13 @@ MonoBehaviour:
   throwForceInXandY: 0.05
   throwForceInZ: 0.1
   cam: {fileID: 0}
+  cam_col: {fileID: 0}
   world: {fileID: 0}
   thrown: 0
   Buizel: {fileID: 0}
   recover: {fileID: 0}
+  distance2camera: 0.2
+  distance2wait: 0.8
   Balltype: 0
 --- !u!1 &8868008554842809914
 GameObject:

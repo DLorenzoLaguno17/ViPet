@@ -61,17 +61,21 @@ public class MovementAI : MonoBehaviour
                 GameObject.Find("ButtonManager").GetComponent<ButtonManager>().DisableFood();
                 //EAT EMOTION HERE
                 GetComponent<StateManager>().newEmotion(EmotionStates.Full);
+                GetComponent<StateManager>().UpdateHungry(GetComponent<StateManager>().gain + 5);
             }
             else if (gameObject.GetComponent<StateManager>().playing)
             {
                 //HAPPY EMOTION HERE
                 GetComponent<StateManager>().newEmotion(EmotionStates.Happy);
+                GetComponent<StateManager>().UpdateBored(GetComponent<StateManager>().gain + 15);
             }
             to_end = false;
         }
     }
     public void setDestination(Vector3 dest)
     {
+        GetComponent<StateManager>().anim.SetBool("Happy", false);
+        GetComponent<StateManager>().anim.SetBool("Eat", false);
         GetComponent<StateManager>().anim.SetBool("Walk", true);
         agent.SetDestination(dest);
         destinyPos = dest;
